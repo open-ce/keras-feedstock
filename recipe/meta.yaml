@@ -20,9 +20,8 @@ requirements:
   run:
     - python           #[py>36]
     - pandas
-    - pydot            #[py<39]
+    - pydot
     - portpicker
-      #    - numpy {{ numpy }}
     - scipy {{ scipy }}
     - pyyaml {{ pyyaml }}
     - pillow {{ pillow }}
