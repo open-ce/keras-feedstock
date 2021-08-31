@@ -20,7 +20,9 @@ requirements:
   run:
     - python           #[py>36]
     - pandas
-    - pydot
+    # Disabling pydot temporarily as it is not available for py39.
+    # Even the one available for py38/py37 has conflict due to graphviz and pillow.
+    #- pydot
     - portpicker
     - scipy {{ scipy }}
     - pyyaml {{ pyyaml }}
