@@ -1,0 +1,51 @@
+{% set version = "2.6.0" %}
+
+package:
+  name: keras
+  version: {{ version }}
+
+source:
+  url: https://files.pythonhosted.org/packages/5a/38/04d9b7fb53acdf861df2c4505fa96b06c779817a511e94b8882d284ba360/keras-{{ version }}-py2.py3-none-any.whl
+  sha256: 504af5656a9829fe803ce48a8580ef16916e89906aceddad9e098614269437e7
+
+build:
+  noarch: python
+  number: 1
+  script: "python -m pip install keras-{{ version }}*.whl --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - python           #[py>36]
+    - pip
+  run:
+    - python           #[py>36]
+    - pandas
+    # Disabling pydot temporarily as it is not available for py39.
+    # Even the one available for py38/py37 has conflict due to graphviz and pillow.
+    #- pydot
+    - portpicker
+    - scipy {{ scipy }}
+    - pyyaml {{ pyyaml }}
+    - pillow {{ pillow }}
+    - tensorflow-base {{ tensorflow }}
+
+test:
+  imports:
+    - keras
+    - keras.backend
+    - keras.datasets
+    - keras.engine
+    - keras.layers
+    - keras.preprocessing
+    - keras.utils
+    - keras.wrappers
+
+about:
+  home: https://github.com/keras-team/keras
+  license: MIT
+  license_file: ../LICENSE
+  summary: Deep Learning for Python
+
+extra:
+  recipe-maintainers:
+    - open-ce/open-ce-dev-team
