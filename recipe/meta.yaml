@@ -1,12 +1,12 @@
-{% set version = "2.10.0" %}
+{% set version = "2.12.0" %}
 
 package:
   name: keras
   version: {{ version }}
 
 source:
-  url: https://files.pythonhosted.org/packages/f9/4d/dc255a437c9616b155e5bd55e325e092b7cdcb4652361d733ae051d40853/keras-{{ version }}-py2.py3-none-any.whl
-  sha256: 26a6e2c2522e7468ddea22710a99b3290493768fc08a39e75d1173a0e3452fdf
+  url: https://files.pythonhosted.org/packages/f7/11/8cbba29722b1e8c9f1f0df482025ed8c547c03c66e610b44f34a5d5a0564/keras-2.12.0rc1-py2.py3-none-any.whl
+  sha256: 9ea0dcfe000543298d7baea1e0552520d9644de72849c10eb30272dbd60d2536
 
 build:
   noarch: python
