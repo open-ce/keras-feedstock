@@ -5,8 +5,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://files.pythonhosted.org/packages/f7/11/8cbba29722b1e8c9f1f0df482025ed8c547c03c66e610b44f34a5d5a0564/keras-2.12.0rc1-py2.py3-none-any.whl
-  sha256: 9ea0dcfe000543298d7baea1e0552520d9644de72849c10eb30272dbd60d2536
+  url: https://files.pythonhosted.org/packages/d5/80/34e55d7e3ed9cf18020929460f969de1bf82cf2f509c639b358ae2b25618/keras-{{ version }}-py2.py3-none-any.whl
+  sha256: 35c39534011e909645fb93515452e98e1a0ce23727b55d4918b9c58b2308c15e
 
 build:
   noarch: python
