@@ -1,0 +1,25 @@
+From 04ff58cb22340166dea196538805dd47c72f27bb Mon Sep 17 00:00:00 2001
+From: Nishidha Panpaliya <npanpa23in.ibm.com>
+Date: Thu, 6 Apr 2023 09:42:14 +0000
+Subject: [PATCH] Fix resnet50_tf tests in FIPS mode
+
+---
+ keras/utils/data_utils.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/keras/utils/data_utils.py b/keras/utils/data_utils.py
+index 3856d427..71afa2a0 100644
+--- a/keras/utils/data_utils.py
++++ b/keras/utils/data_utils.py
+@@ -389,7 +389,7 @@ def _resolve_hasher(algorithm, file_hash=None):
+         return hashlib.sha256()
+ 
+     # This is used only for legacy purposes.
+-    return hashlib.md5()
++    return hashlib.md5(usedforsecurity=False)
+ 
+ 
+ def _hash_file(fpath, algorithm="sha256", chunk_size=65535):
+-- 
+2.34.1
+
