@@ -19,10 +19,14 @@ set -vex
 
 source open-ce-common-utils.sh
 
-mkdir -pp $SRC_DIR/keras_pkg
-bazel build //keras/tools/pip_package:build_pip_package
-bazel-bin/keras/tools/pip_package/build_pip_package $SRC_DIR/keras_pkg
+DEST_DIR=$SRC_DIR/keras_pkg
+mkdir -p $DEST_DIR
+cd $SRC_DIR/keras/tools/pip_package
 
+python setup.py bdist_wheel --universal --project_name keras
+cp dist/* ${DEST_DIR}
+
+echo $(date) : "=== Output wheel file is in: ${DEST_DIR}"
 # install using pip from the whl file
-pip install --no-deps $SRC_DIR/keras_pkg/keras*.whl
+pip install --no-deps $DEST_DIR/keras*.whl
 

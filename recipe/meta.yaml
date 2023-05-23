@@ -12,8 +12,7 @@ source:
 
 build:
   noarch: python
-  number: 2
-#  script: "python -m pip install keras-{{ version }}*.whl --no-deps --ignore-installed -vv "
+  number: 3
 
 requirements:
   build:
@@ -23,7 +22,6 @@ requirements:
     - bazel {{ bazel }}
     - python           #[py>36]
     - pip
-    - tensorflow-base {{ tensorflow }}
   run:
     - python           #[py>36]
     - pandas
@@ -35,20 +33,25 @@ requirements:
     - pyyaml {{ pyyaml }}
     - pillow
     - black {{ black }}
-    - tensorflow-base {{ tensorflow }}
+
+  run_constrained:
+    - tensorflow {{ tensorflow }}.*
 
 test:
   requires:
-    - keras
-  imports:
-    - keras
-    - keras.backend
-    - keras.datasets
-    - keras.engine
-    - keras.layers
-    - keras.preprocessing
-    - keras.utils
-    - keras.wrappers
+    - pip
+  commands:
+    - pip check
+# Disabling these imports test  due to cyclic dependency with TF
+#  imports:
+#    - keras
+#    - keras.backend
+#    - keras.datasets
+#    - keras.engine
+#    - keras.layers
+#    - keras.preprocessing
+#    - keras.utils
+#    - keras.wrappers
 
 about:
   home: https://github.com/keras-team/keras
