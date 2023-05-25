@@ -19,14 +19,9 @@ set -vex
 
 source open-ce-common-utils.sh
 
-DEST_DIR=$SRC_DIR/keras_pkg
-mkdir -p $DEST_DIR
-cd $SRC_DIR/keras/tools/pip_package
 
-python setup.py bdist_wheel --universal --project_name keras
-cp dist/* ${DEST_DIR}
+cd $SRC_DIR
+patch -p1 < $RECIPE_DIR/0001-Fix-resnet50_tf-tests-in-FIPS-mode.patch
+wheel pack $SRC_DIR
 
-echo $(date) : "=== Output wheel file is in: ${DEST_DIR}"
-# install using pip from the whl file
-pip install --no-deps $DEST_DIR/keras*.whl
-
+$PYTHON -m pip install -vv keras-${PKG_VERSION}-py2.py3-none-any.whl
