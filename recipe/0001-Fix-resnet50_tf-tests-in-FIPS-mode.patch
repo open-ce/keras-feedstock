@@ -16,7 +16,7 @@ index 3856d427..71afa2a0 100644
  
      # This is used only for legacy purposes.
 -    return hashlib.md5()
-+    return hashlib.sha1()
++    return hashlib.md5(usedforsecurity=False)
  
  
  def _hash_file(fpath, algorithm="sha256", chunk_size=65535):

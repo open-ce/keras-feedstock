@@ -19,10 +19,9 @@ set -vex
 
 source open-ce-common-utils.sh
 
-mkdir -pp $SRC_DIR/keras_pkg
-bazel build //keras/tools/pip_package:build_pip_package
-bazel-bin/keras/tools/pip_package/build_pip_package $SRC_DIR/keras_pkg
 
-# install using pip from the whl file
-pip install --no-deps $SRC_DIR/keras_pkg/keras*.whl
+cd $SRC_DIR
+patch -p1 < $RECIPE_DIR/0001-Fix-resnet50_tf-tests-in-FIPS-mode.patch
+wheel pack $SRC_DIR
 
+$PYTHON -m pip install -vv keras-${PKG_VERSION}-py2.py3-none-any.whl
