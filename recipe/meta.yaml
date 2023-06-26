@@ -19,7 +19,7 @@ requirements:
     - python {{ python }}
     - keras-preprocessing >={{ keras_preprocessing }}
   run_constrained:
-    - tensorflow-base {{ tensorflow }}
+    - tensorflow {{ tensorflow }}
 
 test:
   requires:
