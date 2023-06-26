@@ -9,47 +9,26 @@ source:
     sha256: 35c39534011e909645fb93515452e98e1a0ce23727b55d4918b9c58b2308c15e
 
 build:
-  noarch: python
   number: 3
 
 requirements:
-  build:
-    - {{ compiler('c') }}      # [ ppc_arch != "p10"]
-    - {{ compiler('cxx') }}    # [ ppc_arch != "p10"]
   host:
-    - bazel {{ bazel }}
-    - python           #[py>36]
+    - python {{ python }}
     - pip
   run:
-    - python           #[py>36]
-    - pandas
-    # Disabling pydot temporarily as it is not available for py39.
-    # Even the one available for py38/py37 has conflict due to graphviz and pillow.
-    #- pydot
-    - portpicker
-    - scipy {{ scipy }}
-    - pyyaml {{ pyyaml }}
-    - pillow
-    - black {{ black }}
-
+    - python {{ python }}
+    - keras-preprocessing >={{ keras_preprocessing }}
   run_constrained:
-    - tensorflow {{ tensorflow }}.*
+    - tensorflow {{ tensorflow }}
 
 test:
   requires:
     - pip
   commands:
     - pip check
-# Disabling these imports test  due to cyclic dependency with TF
-#  imports:
-#    - keras
-#    - keras.backend
-#    - keras.datasets
-#    - keras.engine
-#    - keras.layers
-#    - keras.preprocessing
-#    - keras.utils
-#    - keras.wrappers
+  # Cyclic dependency with tensorflow
+  # imports:
+  #  - keras
 
 about:
   home: https://github.com/keras-team/keras
