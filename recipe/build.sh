@@ -17,11 +17,4 @@
 
 set -vex
 
-source open-ce-common-utils.sh
-
-
-cd $SRC_DIR
-patch -p1 < $RECIPE_DIR/0001-Fix-resnet50_tf-tests-in-FIPS-mode.patch
-wheel pack $SRC_DIR
-
-$PYTHON -m pip install -vv keras-${PKG_VERSION}-py2.py3-none-any.whl
+$PYTHON -m pip install -vv keras-${PKG_VERSION}-py3-none-any*.whl
