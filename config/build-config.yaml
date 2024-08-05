@@ -1,0 +1,6 @@
+recipes:
+  - name : keras-2.12
+    path : keras-2.12/recipe
+
+  - name : keras-2.13
+    path : keras-2.13/recipe
